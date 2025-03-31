@@ -1,7 +1,7 @@
 # Social Media Project
 
 A social media platform built with:
-- Laravel 10
+- Laravel 12
 - Vue 3
 - Inertia.js
 
