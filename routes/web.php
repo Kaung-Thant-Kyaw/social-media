@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -24,4 +26,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
+// Social login
+Route::prefix('auth')->group(function () {
+    // Google Login
+    Route::get('/{provider}/redirect', [SocialLoginController::class, 'redirect'])->name('socialLogin');
+    Route::get('/{provider}/callback', [SocialLoginController::class, 'callback'])->name('socialCallback');
+});
