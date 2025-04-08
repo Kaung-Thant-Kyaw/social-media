@@ -47,7 +47,7 @@ class SocialLoginController extends Controller
 
         if (!$user) {
             $user = User::create([
-                'name' => $socialUser->getName(),
+                'name' => $socialUser->getName() ?? $socialUser->getNickname(),
                 'email' => $socialUser->getEmail(),
                 'avatar' => $socialUser->getAvatar(),
                 'password' => null, // no need for social login
